@@ -1,0 +1,28 @@
+{
+  "name": "prtofiloapp",
+  "version": "1.0.0",
+  "description": "app to show users protfilo",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "connect": "^3.7.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.2",
+    "jsonwebtoken": "^8.5.1",
+    "mongodb": "^3.6.6",
+    "mongoose": "^5.12.5",
+    "mongoose-hidden": "^1.9.1",
+    "nodemon": "^2.0.7",
+    "validator": "^13.6.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.9.0"
+  }
+}

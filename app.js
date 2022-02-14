@@ -14,6 +14,6 @@ app.listen(8080, () => {});
 
 //connect database
 (async ()=>{
-    await mongoose.connect(process.env.DataBase, { useNewUrlParser: true, useUnifiedTopology: true,useCreateIndex:true });
+    await mongoose.connect("mongodb://127.0.0.1:27017/protofilo", { useNewUrlParser: true, useUnifiedTopology: true,useCreateIndex:true });
 })();
  app.use('/api', mrouteres);

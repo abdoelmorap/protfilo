@@ -12,12 +12,8 @@ app.use(BodyParser.urlencoded({ extended: true }));
 
 app.listen(8080, () => {});
 
-app.get('/', function (req, res) {
-    res.send('Hello World');
- })
-
 //connect database
 (async ()=>{
-    await mongoose.connect("mongodb://127.0.0.1:27017/protofilo", { useNewUrlParser: true, useUnifiedTopology: true,useCreateIndex:true });
+    await mongoose.connect(process.env.DataBase, { useNewUrlParser: true, useUnifiedTopology: true,useCreateIndex:true });
 })();
  app.use('/api', mrouteres);

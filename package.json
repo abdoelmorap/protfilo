@@ -2,7 +2,7 @@
   "name": "prtofiloapp",
   "version": "1.0.0",
   "description": "app to show users protfilo",
-  "main": "server.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -18,14 +18,7 @@
     "jsonwebtoken": "^8.5.1",
     "mongodb": "^3.6.6",
     "mongoose": "^5.12.5",
-    "mongoose-hidden": "^1.9.1",
     "nodemon": "^2.0.7",
     "validator": "^13.6.0"
-  },
-  "engines": {
-    "node": "10.19.0"
-  },
-  "devDependencies": {
-    "eslint": "^8.9.0"
   }
 }

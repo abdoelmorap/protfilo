@@ -21,6 +21,6 @@ app.get('/', (req, res) => {
 
 //connect database
 (async ()=>{
-    await mongoose.connect(process.env.DataBase, { useNewUrlParser: true, useUnifiedTopology: true,useCreateIndex:true });
+    await mongoose.connect(process.env.LiveMonogoDB, { useNewUrlParser: true, useUnifiedTopology: true,useCreateIndex:true });
 })();
  app.use('/api', mrouteres);

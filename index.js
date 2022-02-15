@@ -5,12 +5,15 @@ const  dotenv=require("dotenv");
 const  mrouteres=require("./router/routes")
 //loaad config
 dotenv.config();
-var app = Express();
+var app = Express(); 
 
 app.use(BodyParser.json());
 app.use(BodyParser.urlencoded({ extended: true }));
+const port = process.env.PORT || 8080;
+app.listen(port, () => {
+    console.log("Server listening on port " + port);
+});
 
-app.listen(8080, () => {});
 
 //connect database
 (async ()=>{

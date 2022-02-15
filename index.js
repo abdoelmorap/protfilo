@@ -14,6 +14,10 @@ app.listen(port, () => {
     console.log("Server listening on port " + port);
 });
 
+app.get('/', (req, res) => {
+    res.send('Hello World!')
+  })
+  
 
 //connect database
 (async ()=>{

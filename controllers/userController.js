@@ -65,7 +65,7 @@ router.get('/logout', function(req, res) {
 router.get('/getprtofilo', function(req, res) {
     User.aggregate([{
         $lookup: {
-            from:"Portfolios",
+            from:"portfolios",
             localField:"_id",
             foreignField:"user_id",
             as:"users_Portfolios"

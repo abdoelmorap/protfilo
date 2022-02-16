@@ -152,15 +152,21 @@ Portfolios.aggregate([
       foreignField: "project_id",
       as: "projects.gallery",
     }
-  }
-      
-
-    , {
-        $group: {
-          _id : "$_id",
-          userInfo: { $first: "$users" },
-          address: { $push: "$projects" }
+  } 
+     , {
+        $lookup: {
+          from: "portfolios",
+          localField: "_id",
+          foreignField: "_id",
+          as: "portfolios",
         }
+      } 
+        ,{
+        $group: {
+         _id :  "$portfolios", 
+          userInfo: { $first: "$users" },
+          projects: { $push: "$projects" }
+        }, 
       
 
   }]).exec(function(err, data) {

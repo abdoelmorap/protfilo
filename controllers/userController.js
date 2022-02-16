@@ -3,7 +3,7 @@ const app =Express;
 const mongoose = require("mongoose");
 
 const User=require('../models/userModel');
-const Projects=require('../models/projects');
+const Portfolios=require('../models/protiflo');
 const router =app.Router();
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
@@ -81,27 +81,92 @@ router.get('/getprtofilo', function(req, res) {
 });
 
 router.get('/getprojects', function(req, res) { 
-console.log(mongoose.Types.ObjectId(req.query.id));
-    Projects.aggregate([   
+//     Portfolios.aggregate([   
         
         
-        { "$match": { "protfilo_id":  mongoose.Types.ObjectId(req.query.id) }  } ,
-    {
-        $lookup: {
-            from:"gallery",
-            localField:"_id",
-            foreignField:"project_id",
-            as:"gallery"
-        }  
-    }
-])
-.exec(function(err, data) {
-        res.status(200).send(data);
-        // students contain WorksnapsTimeEntries
-    });
+//          { "$match": { "_id":  mongoose.Types.ObjectId(req.query.id) }  } ,
+         
+         
+//     {
+//         $lookup: {
+//             from:"projects",
+//             localField:"_id",
+//             foreignField:"protfilo_id",
+//             as:"projects"
+//         }  
+//     },   {
+//         $lookup: {
+//           from: "gallery",
+//           localField: "projects._id",
+//           foreignField: "project_id",
+//           as: "projects.Info.gallery",
+//         }
+//       },  {
+//         $lookup: {
+// from:"projects",
+// localField:"_id",
+// foreignField:"protfilo_id",
+// as:"projects.data"
+// }  
+// },  {
+//         $lookup: {
+//             from:"users",
+//             localField:"user_id",
+//             foreignField:"_id",
+//             as:"user"
+//         }  
+//     }
+// ])
+// .exec(function(err, data) {
+//         res.status(200).send(data);
+//         // students contain WorksnapsTimeEntries
+//     });
     
    
-  
+Portfolios.aggregate([ 
+    { "$match": { "_id":  mongoose.Types.ObjectId(req.query.id) }  } ,{
+    $lookup: {
+        from:"users",
+        localField:"user_id",
+        foreignField:"_id",
+        as:"users"
+    }  
+} ,
+
+ {
+    $lookup: {
+      from: "projects",
+      localField: "_id",
+      foreignField: "protfilo_id",
+      as: "projects"
+    }
+  }, {
+    $unwind: {
+      path: "$projects",
+      preserveNullAndEmptyArrays: true
+    }
+  }, {
+    $lookup: {
+      from: "gallery",
+      localField: "projects._id",
+      foreignField: "project_id",
+      as: "projects.gallery",
+    }
+  }
+      
+
+    , {
+        $group: {
+          _id : "$_id",
+          userInfo: { $first: "$users" },
+          address: { $push: "$projects" }
+        }
+      
+
+  }]).exec(function(err, data) {
+            res.status(200).send(data);
+            // students contain WorksnapsTimeEntries
+        });
 
 });
 

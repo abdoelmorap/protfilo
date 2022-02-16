@@ -32,6 +32,6 @@ const  protifloSchema =new mongoose.Schema({
 
 });
  
-const Portofilo=mongoose.model('projects',protifloSchema);
+const Portfolios=mongoose.model('portfolios',protifloSchema);
 
-module.exports=Portofilo;
+module.exports=Portfolios;

@@ -2,7 +2,9 @@ const Express = require("express");
 const BodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const  dotenv=require("dotenv");
-const  mrouteres=require("./router/routes")
+const  mrouteres=require("./router/routes");
+const cors = require("cors");
+
 //loaad config
 dotenv.config();
 var app = Express(); 
@@ -18,6 +20,7 @@ app.get('/', (req, res) => {
     res.send('Hello World!')
   });
   
+  app.use(cors());
 
 //connect database
 (async ()=>{
